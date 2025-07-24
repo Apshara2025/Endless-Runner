@@ -751,8 +751,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895e8ddacb5a0954093014f5fd74f5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 971817387999735751, guid: 0479d235ef8e9e1449c08339af4a103a, type: 3}
+  obstaclePrefabs:
+  - {fileID: 2823294708975221590, guid: 7712bad25a878f74b8af46bc938258d5, type: 3}
+  - {fileID: 971817387999735751, guid: 0479d235ef8e9e1449c08339af4a103a, type: 3}
   obstacleSpawnTime: 3
+  obstacleParent: {fileID: 0}
 --- !u!4 &2081720963
 Transform:
   m_ObjectHideFlags: 0
