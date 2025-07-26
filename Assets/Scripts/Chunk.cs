@@ -12,6 +12,7 @@ public class Chunk : MonoBehaviour
     [SerializeField] float coinSpawnChance = 0.5f;
     [SerializeField] float chunkLength = 10f;
     [SerializeField] float coinInFiveChance = 0.5f;
+    [SerializeField] float coinSeparationLength = 2f;
     [SerializeField] float[] lanes = { -2.5f, 0f, 2.5f };
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     List<int> availableLanes = new List<int> { 0, 1, 2 };
@@ -56,15 +57,16 @@ public class Chunk : MonoBehaviour
     {
         if (Random.value > coinSpawnChance || availableLanes.Count <= 0) return;
         int selectedLane = SelectLane();
-        
-        for (int i = 0; i < 5; i++)
+
+        int maxCoinsToSpawn = 6;
+        int CoinsToSpawn = Random.Range(1, maxCoinsToSpawn);
+        float TopofChunkZPos = transform.position.z + (coinSeparationLength * 2f);
+
+        for (int i = 0; i < CoinsToSpawn; i++)
         {
-            if (Random.value > coinInFiveChance)
-            {
-                Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, transform.position.z - chunkLength / 2 + chunkLength / 5 * (i + 1) - 1);
-                Instantiate(coinPrefab, spawnPosition, Quaternion.identity, this.transform);
-            }
-            
+            float spawnPositionZ = TopofChunkZPos - (i * coinSeparationLength);
+            Vector3 spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, spawnPositionZ);
+            Instantiate(coinPrefab, spawnPosition, Quaternion.identity, this.transform);
         }
         
     }
