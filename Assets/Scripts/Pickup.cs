@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    const string playerString = "Player";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +16,10 @@ public class Pickup : MonoBehaviour
     }
     
     void OnTriggerEnter(Collider other) {
-        Debug.Log(other.gameObject.name);
+        if (other.CompareTag(playerString))
+        {
+            Debug.Log(other.gameObject.name);
+        }
+        
     }
 }
